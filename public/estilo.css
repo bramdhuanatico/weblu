@@ -1,0 +1,353 @@
+body {
+  margin: 0;
+  background: #000;
+  font-family: 'Comic Sans MS', cursive;
+  color: #ff69b4;
+  overflow: hidden; 
+}
+.contenedor-imagen {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  align-items: center;     
+  gap: 70px;     
+  font-size: 20px; 
+  color: red;         /* espacio entre columnas */
+}
+
+.fondo-estrellas {
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  width: 100%;
+  height: 100%;
+  background: url("/paisaje.jpg") no-repeat center center; 
+  background-size: cover;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.contenedor {
+  text-align: center;
+  background: rgba(255, 240, 245, 0.9);
+  padding: 30px;
+  margin: 50px auto;
+  border-radius: 25px;
+  width: 80%;
+  max-width: 800px;
+  box-shadow: 0 0 15px #ffb6c1;
+  animation: aparecer 2s ease;
+}
+
+.imagen {
+  max-width: 300px;
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
+.minicarta {
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+
+button#boton-amor {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff69b4;
+  transition: transform 0.3s;
+}
+
+button#boton-amor:hover {
+  transform: scale(1.1);
+}
+
+.galeria {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px; /* Espacio entre fotos */
+  margin-top: 20px;
+}
+
+.galeria img {
+  width: 180px; /* Tamaño de la miniatura */
+  height: 180px;
+  object-fit: cover; /* Recorta la foto para que sea cuadrada perfecta */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el mouse por encima */
+.galeria img:hover {
+  transform: scale(1.1); /* Se agranda un poquito */
+  box-shadow: 0 0 15px #ff69b4; /* Brillo rosa */
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.corazon-flotante {
+  position: fixed;
+  animation: flotar 2s ease forwards;
+  font-size: 2rem;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes flotar {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+#cortina-contenedor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  overflow: hidden;
+}
+
+.puerta {
+  width: 50%;
+  height: 100%;
+  background: #ffc0cb; /* Rosa pastel */
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#boton-entrada {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px 50px;
+  background: white;
+  border: 4px solid #ff85a2;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.5s ease;
+  outline: none;
+  animation: latido 2s infinite; /* Efecto de movimiento */
+}
+
+#boton-entrada h2 {
+  margin: 0;
+  color: #ff4d6d;
+  font-family: 'Arial', sans-serif;
+}
+
+#boton-entrada p {
+  color: #ff85a2;
+  margin: 5px 0;
+}
+
+.corazon {
+  font-size: 18px;
+  display: block;
+}
+
+/* Animación de latido para el botón */
+@keyframes latido {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Clases de apertura */
+.abrir-izq { transform: translateX(-100%); }
+.abrir-der { transform: translateX(100%); }
+.ocultar { opacity: 0; pointer-events: none; }
+
+/* --- FOTOS EN LAS CORTINAS --- */
+
+/* Foto para la cortina izquierda */
+#izquierda {
+  background: url("/cortinaizquierda.png") no-repeat  center center;
+  background-size: cover;
+}
+
+/* Foto para la cortina derecha */
+#derecha {
+  background: url("/cortinaderecha.png") no-repeat center center;
+background-size: cover;
+}
+
+/* --- ESTILOS DEL CARRUSEL / MODAL --- */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 10000; /* Por encima de todo, incluso las cortinas */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo negro transparente */
+    backdrop-filter: blur(5px); /* Efecto borroso bonito */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-contenido {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#img-modal {
+    max-width: 800px;
+    max-height: 70vh; /* Que no sea más alta que el 70% de la pantalla */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+    object-fit: contain;
+}
+
+#texto-modal {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    margin-top: 15px;
+    font-family: 'Comic Sans MS', cursive;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.cerrar {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.flecha {
+    cursor: pointer;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 50%;
+    margin: 0 20px;
+}
+
+.flecha:hover {
+    background-color: rgba(255, 105, 180, 0.8);
+}
+
+/* Para pantallas pequeñas */
+@media only screen and (max-width: 700px){
+    #img-modal { width: 100%; }
+    .flecha { padding: 10px; margin: 0 5px; }
+}
+
+/* --- ESTILOS CARTA SORPRESA FINAL --- */
+
+.sorpresa-final {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#btn-carta-final {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+    transition: transform 0.3s ease;
+    font-family: 'Comic Sans MS', cursive;
+}
+
+#btn-carta-final:hover {
+    transform: scale(1.05);
+    background-color: #e84118;
+}
+
+/* El contenedor oculto (inicialmente cerrado) */
+.carta-caja {
+    max-height: 0; /* Altura 0 para que no se vea */
+    overflow: hidden; /* Esconde el contenido que sobra */
+    transition: max-height 0.8s ease-out; /* Animación suave al abrir */
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Clase que agregaremos con JS para abrirla */
+.carta-caja.abierta {
+    max-height: 800px; /* Suficiente altura para que se vea el texto */
+}
+
+/* El diseño del papel */
+.contenido-papel {
+    background: #fffbe6; /* Color crema tipo papel antiguo */
+    color: #555;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 1px dashed #d1ccc0; /* Borde punteado */
+    font-family: 'Georgia', serif; /* Letra más elegante para la carta */
+    line-height: 1.6;
+    text-align: left; /* Texto alineado a la izquierda como una carta real */
+}
+
+.contenido-papel h3 {
+    text-align: center;
+    color: #ff6b81;
+    margin-bottom: 20px;
+}
+
+/* --- LLUVIA DE FLORES --- */
+.flor {
+  position: fixed; /* Se mantiene en la pantalla aunque hagas scroll */
+  top: -10vh; /* Empieza un poco arriba de la pantalla */
+  font-size: 25px; /* Tamaño base */
+  z-index: 10; /* Por encima del fondo, pero debajo de modales */
+  opacity: 0.3; /* Transparencia baja como pediste */
+  pointer-events: none; /* IMPORTANTE: Permite dar clic a través de ellas */
+  animation: caer linear forwards; /* La animación de caída */
+}
+
+@keyframes caer {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg); /* Caen hasta el final y rotan */
+  }
+}
